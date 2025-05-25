@@ -1,9 +1,10 @@
 import requests
 import time
+import os
 
-# Gắn sẵn token và chat_id ở đây
-TELEGRAM_TOKEN = '8086894988:AAFueaG7-pInd_oUF0r7WffBQRfiu_8qr08'
-CHAT_ID = '990309170'
+# 🔐 Lấy thông tin từ biến môi trường
+TELEGRAM_TOKEN = os.getenv("TELEGRAM_TOKEN")
+CHAT_ID = os.getenv("CHAT_ID")
 
 def send_telegram_message(message):
     url = f'https://api.telegram.org/bot{TELEGRAM_TOKEN}/sendMessage'
@@ -27,7 +28,7 @@ def fetch_bsc_pairs():
 
 known_pairs = set()
 
-# Gửi thông báo test để kiểm tra bot hoạt động
+# Gửi thông báo test để biết bot đã chạy
 send_telegram_message("✅ Bot theo dõi USD1 trên BSC đã khởi động!")
 
 while True:
