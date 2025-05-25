@@ -1,11 +1,15 @@
 import requests
+import os
 
-TOKEN = "8086894988:AAFueaG7-pInd_oUF0r7WffBQRfiu_8qr08"
-CHAT_ID = "990309170"
-
-message = "✅ Test thành công: Bot Telegram đã hoạt động!"
+TOKEN = os.environ.get("BOT_TOKEN")
+CHAT_ID = os.environ.get("CHAT_ID")
+TEXT = "✅ Test thành công từ Railway!"
 
 url = f"https://api.telegram.org/bot{TOKEN}/sendMessage"
-response = requests.post(url, data={"chat_id": CHAT_ID, "text": message})
+data = {
+    "chat_id": CHAT_ID,
+    "text": TEXT
+}
 
-print("Gửi thành công" if response.status_code == 200 else "Lỗi gửi:", response.text)
+response = requests.post(url, data=data)
+print(response.text)
